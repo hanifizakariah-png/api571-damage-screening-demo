@@ -1,0 +1,23 @@
+equipment_tag,unit,service_description,component_type,material,temperature_c,pressure_kpag,phase,water_present,h2s_present,co2_present,chlorides_present,amine_present,caustic_present,sulfur_present,insulation_present,cyclic_service,pwht_status,notes
+V-101,Crude Unit,Overhead accumulator,Drum,Carbon Steel,65,350,Liquid,Yes,No,Yes,Yes,No,No,No,Yes,No,No,Wet overhead service with chloride carryover
+P-102A,Produced Water,Produced water transfer,Pump discharge elbow,Carbon Steel,45,700,Liquid,Yes,Yes,Yes,Yes,No,No,No,No,Yes,Unknown,High velocity water with sand traces
+E-103,Amine Unit,Lean amine cooler,Tube bundle,Carbon Steel,88,500,Liquid,Yes,No,No,No,Yes,No,No,No,No,No,Aqueous amine circulation
+L-104,Offsites,Caustic injection line,Injection point,Carbon Steel,55,900,Liquid,Yes,No,No,No,No,Yes,No,No,Yes,No,Caustic near injection point with turbulence
+R-105,Hydrotreater,Reactor effluent line,Elbow,Low Alloy Steel,330,4200,Vapor,No,Yes,No,No,No,No,Yes,Yes,Yes,No,Hot sulfur-bearing service downstream reactor
+T-106,Utilities,Cooling water header,Pipe,304 Stainless Steel,70,600,Liquid,Yes,No,No,Yes,No,No,No,Yes,No,Yes,Insulated stainless line exposed to chlorides
+V-107,Sour Gas,Sour knockout drum,Drum,Carbon Steel,40,1600,Liquid,Yes,Yes,No,No,No,No,No,No,No,No,Wet sour service without PWHT
+P-108A,Gas Compression,Wet gas flowline,Reducer,Carbon Steel,35,2200,Multiphase,Yes,No,Yes,No,No,No,No,No,No,Unknown,Multiphase flow with turbulence
+E-109,Crude Unit,Atmospheric residue exchanger shell,Shell,Carbon Steel,285,900,Liquid,No,No,No,No,No,No,Yes,Yes,No,Yes,High sulfur crude side
+V-110,Amine Unit,Rich amine flash drum,Drum,Carbon Steel,95,250,Liquid,Yes,Yes,No,No,Yes,No,No,No,No,No,Rich amine with some H2S loading
+L-111,Offsites,Caustic transfer line,Tee,Carbon Steel,60,750,Liquid,Yes,No,No,No,No,Yes,No,No,Yes,Unknown,Caustic service with cyclic batching
+P-112,Sea Water,Seawater injection line,Elbow,316L Stainless Steel,85,1400,Liquid,Yes,No,No,Yes,No,No,No,Yes,No,Yes,High chloride aqueous service
+F-113,FCC,Fractionator overhead line,Pipe,Carbon Steel,120,180,Liquid,Yes,No,Yes,Yes,No,No,No,Yes,No,No,Condensing acidic water possible
+R-114,Hydrotreater,Hot separator inlet,Pipe,Carbon Steel,260,3100,Vapor,No,Yes,No,No,No,No,Yes,Yes,No,No,High temperature sulfur species present
+V-115,Utilities,Insulated steam condensate drum,Drum,Carbon Steel,90,250,Liquid,Yes,No,No,No,No,No,No,Yes,No,Yes,External insulation with intermittent wetting
+P-116,Caustic Unit,Caustic recirculation pump discharge,Control valve,Carbon Steel,75,1100,Liquid,Yes,No,No,No,No,Yes,No,No,Yes,No,Flashing and turbulence downstream valve
+L-117,Gas Plant,Dehydration outlet line,Pipe,Carbon Steel,25,450,Gas,,No,Yes,No,No,No,No,No,No,Unknown,Water content uncertain in gas line
+E-118,Produced Water,Produced water cooler tube inlet,Elbow,Carbon Steel,55,650,Liquid,Yes,Yes,Yes,No,No,No,No,No,No,No,High velocity with solids and sour water
+V-119,Offsites,Chemical storage tank nozzle,Nozzle,304L Stainless Steel,35,50,Liquid,Yes,No,No,Yes,No,No,No,No,No,Yes,Low temperature chloride service
+L-120,Amine Unit,Lean/rich amine exchanger bypass,Pipe,Carbon Steel,102,400,Liquid,Yes,No,No,No,Yes,No,No,Yes,Yes,No,Hot aqueous amine service
+P-121,Sour Water,Sour water stripper bottoms,Pump discharge elbow,Carbon Steel,115,1300,Liquid,Yes,Yes,No,No,No,No,No,No,Yes,No,Sour water with entrained solids and high velocity
+L-122,Crude Unit,Desalter effluent line,Pipe,Carbon Steel,145,850,Liquid,Yes,No,Yes,Yes,No,No,No,Yes,No,Unknown,Wet chlorides and CO2 after desalting upset

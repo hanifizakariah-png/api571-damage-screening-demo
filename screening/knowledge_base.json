@@ -1,0 +1,82 @@
+[
+  {
+    "name": "CUI",
+    "api571_alignment": "Simplified API 571-aligned external corrosion under insulation screening logic.",
+    "susceptible_material_terms": ["carbon steel", "cs", "low alloy steel"],
+    "environment_flags": ["insulation_present"],
+    "phase_terms": ["liquid", "vapor", "gas"],
+    "component_terms": ["pipe", "drum", "vessel", "elbow", "nozzle"],
+    "text_cues": ["insulated", "insulation", "wetting", "rain", "external corrosion", "cladding"],
+    "validation_notes": "Strongest when insulation, susceptible steel, and CUI temperature range align."
+  },
+  {
+    "name": "Chloride SCC",
+    "api571_alignment": "Simplified API 571-aligned chloride stress corrosion cracking screening logic.",
+    "susceptible_material_terms": ["304", "304l", "316", "316l", "austenitic stainless"],
+    "environment_flags": ["chlorides_present", "water_present"],
+    "phase_terms": ["liquid", "multiphase"],
+    "component_terms": ["pipe", "nozzle", "drum", "header"],
+    "text_cues": ["chloride", "sea water", "seawater", "salt", "cooling water", "aqueous chloride"],
+    "validation_notes": "Strongest when austenitic stainless steel, chlorides, water, and elevated temperature align."
+  },
+  {
+    "name": "Wet H2S damage / SSC risk",
+    "api571_alignment": "Simplified API 571-aligned wet H2S / sulfide stress cracking screening logic.",
+    "susceptible_material_terms": ["carbon steel", "cs", "low alloy steel"],
+    "environment_flags": ["h2s_present", "water_present"],
+    "phase_terms": ["liquid", "multiphase"],
+    "component_terms": ["drum", "pipe", "vessel", "separator"],
+    "text_cues": ["sour", "wet h2s", "ssc", "sulfide stress cracking", "sour water", "sour gas"],
+    "validation_notes": "Strongest when wet sour service, susceptible steel, and stress or PWHT concerns align."
+  },
+  {
+    "name": "CO2 corrosion",
+    "api571_alignment": "Simplified API 571-aligned sweet corrosion screening logic.",
+    "susceptible_material_terms": ["carbon steel", "cs"],
+    "environment_flags": ["co2_present", "water_present"],
+    "phase_terms": ["liquid", "multiphase"],
+    "component_terms": ["flowline", "pipe", "drum", "elbow"],
+    "text_cues": ["co2", "sweet corrosion", "produced water", "wet gas", "condensing water"],
+    "validation_notes": "Strongest when carbon steel, water, and CO2 align in liquid or multiphase service."
+  },
+  {
+    "name": "Amine corrosion",
+    "api571_alignment": "Simplified API 571-aligned amine corrosion screening logic.",
+    "susceptible_material_terms": ["carbon steel", "cs"],
+    "environment_flags": ["amine_present"],
+    "phase_terms": ["liquid"],
+    "component_terms": ["cooler", "drum", "exchanger", "pipe"],
+    "text_cues": ["amine", "rich amine", "lean amine", "aqueous amine", "amine unit"],
+    "validation_notes": "Strongest when aqueous amine service and carbon steel equipment align."
+  },
+  {
+    "name": "Sulfidation",
+    "api571_alignment": "Simplified API 571-aligned sulfidation screening logic.",
+    "susceptible_material_terms": ["carbon steel", "cs", "low alloy steel"],
+    "environment_flags": ["sulfur_present"],
+    "phase_terms": ["vapor", "liquid"],
+    "component_terms": ["reactor effluent", "pipe", "shell", "heater"],
+    "text_cues": ["sulfur", "sulfidation", "high sulfur", "reactor effluent", "hot separator"],
+    "validation_notes": "Strongest when sulfur-bearing service, susceptible steel, and high temperature align."
+  },
+  {
+    "name": "Caustic cracking",
+    "api571_alignment": "Simplified API 571-aligned caustic cracking screening logic.",
+    "susceptible_material_terms": ["carbon steel", "cs"],
+    "environment_flags": ["caustic_present"],
+    "phase_terms": ["liquid"],
+    "component_terms": ["injection point", "tee", "pipe", "valve"],
+    "text_cues": ["caustic", "naoh", "caustic wash", "injection point", "caustic unit"],
+    "validation_notes": "Strongest when caustic environment, carbon steel, and stress or cyclic conditions align."
+  },
+  {
+    "name": "Erosion-corrosion",
+    "api571_alignment": "Simplified API 571-aligned erosion-corrosion screening logic.",
+    "susceptible_material_terms": ["carbon steel", "cs", "copper alloy"],
+    "environment_flags": [],
+    "phase_terms": ["liquid", "multiphase"],
+    "component_terms": ["elbow", "tee", "reducer", "control valve", "pump discharge", "injection point"],
+    "text_cues": ["high velocity", "erosion", "sand", "solids", "turbulence", "flashing"],
+    "validation_notes": "Strongest when liquid or multiphase flow and turbulent geometry or erosive clues align."
+  }
+]

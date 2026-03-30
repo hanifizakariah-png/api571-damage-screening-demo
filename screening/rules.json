@@ -1,0 +1,304 @@
+[
+  {
+    "name": "CUI",
+    "description": "Carbon and low alloy steel with external insulation in a common CUI temperature range are susceptible to corrosion under insulation when moisture ingress is possible.",
+    "required_fields": ["material", "temperature_c", "insulation_present"],
+    "conditions": [
+      {
+        "field": "insulation_present",
+        "operator": "equals",
+        "value": true,
+        "score": 4,
+        "label": "Insulation is present",
+        "gate": true
+      },
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["carbon steel", "cs", "low alloy steel"],
+        "score": 3,
+        "label": "Material is carbon or low alloy steel",
+        "gate": true
+      },
+      {
+        "field": "temperature_c",
+        "operator": "between",
+        "value": [0, 175],
+        "score": 3,
+        "label": "Temperature is within simplified CUI range",
+        "gate": true
+      }
+    ],
+    "minimum_score": 6
+  },
+  {
+    "name": "Chloride SCC",
+    "description": "Austenitic stainless steels at elevated temperature with chlorides and liquid water can be vulnerable to chloride stress corrosion cracking.",
+    "required_fields": ["material", "temperature_c", "chlorides_present", "water_present"],
+    "conditions": [
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["304", "304l", "316", "316l", "austenitic stainless"],
+        "score": 3,
+        "label": "Material is austenitic stainless steel",
+        "gate": true
+      },
+      {
+        "field": "temperature_c",
+        "operator": "greater_or_equal",
+        "value": 60,
+        "score": 3,
+        "label": "Temperature is elevated for chloride SCC",
+        "gate": true
+      },
+      {
+        "field": "chlorides_present",
+        "operator": "equals",
+        "value": true,
+        "score": 3,
+        "label": "Chlorides are present",
+        "gate": true
+      },
+      {
+        "field": "water_present",
+        "operator": "equals",
+        "value": true,
+        "score": 2,
+        "label": "Liquid water is present",
+        "gate": true
+      }
+    ],
+    "minimum_score": 7
+  },
+  {
+    "name": "Wet H2S damage / SSC risk",
+    "description": "Hard or highly stressed steels in wet H2S service are screened for sulfide stress cracking risk, especially without PWHT in pressure-containing equipment.",
+    "required_fields": ["h2s_present", "water_present", "material", "pwht_status"],
+    "conditions": [
+      {
+        "field": "h2s_present",
+        "operator": "equals",
+        "value": true,
+        "score": 4,
+        "label": "H2S is present",
+        "gate": true
+      },
+      {
+        "field": "water_present",
+        "operator": "equals",
+        "value": true,
+        "score": 3,
+        "label": "Aqueous phase is present",
+        "gate": true
+      },
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["carbon steel", "cs", "low alloy steel"],
+        "score": 2,
+        "label": "Material is carbon or low alloy steel",
+        "gate": true
+      },
+      {
+        "field": "pwht_status",
+        "operator": "contains_any",
+        "value": ["no", "none", "unknown"],
+        "score": 2,
+        "label": "PWHT is absent or unknown"
+      },
+      {
+        "field": "pressure_kpag",
+        "operator": "greater_or_equal",
+        "value": 500,
+        "score": 1,
+        "label": "Pressure is moderate to high"
+      }
+    ],
+    "minimum_score": 7
+  },
+  {
+    "name": "CO2 corrosion",
+    "description": "Carbon steel with water and dissolved CO2 can experience sweet corrosion, especially in wet flowlines, piping, and vessels.",
+    "required_fields": ["co2_present", "water_present", "material"],
+    "conditions": [
+      {
+        "field": "co2_present",
+        "operator": "equals",
+        "value": true,
+        "score": 4,
+        "label": "CO2 is present",
+        "gate": true
+      },
+      {
+        "field": "water_present",
+        "operator": "equals",
+        "value": true,
+        "score": 3,
+        "label": "Free water is present",
+        "gate": true
+      },
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["carbon steel", "cs"],
+        "score": 2,
+        "label": "Material is carbon steel",
+        "gate": true
+      },
+      {
+        "field": "phase",
+        "operator": "contains_any",
+        "value": ["liquid", "multiphase"],
+        "score": 1,
+        "label": "Service includes liquid or multiphase flow"
+      }
+    ],
+    "minimum_score": 6
+  },
+  {
+    "name": "Amine corrosion",
+    "description": "Amine units can experience corrosion in carbon steel equipment and piping, especially with aqueous amine service and elevated temperatures.",
+    "required_fields": ["amine_present", "material"],
+    "conditions": [
+      {
+        "field": "amine_present",
+        "operator": "equals",
+        "value": true,
+        "score": 4,
+        "label": "Amine service is present",
+        "gate": true
+      },
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["carbon steel", "cs"],
+        "score": 2,
+        "label": "Material is carbon steel",
+        "gate": true
+      },
+      {
+        "field": "water_present",
+        "operator": "equals",
+        "value": true,
+        "score": 2,
+        "label": "Water is present"
+      },
+      {
+        "field": "temperature_c",
+        "operator": "greater_or_equal",
+        "value": 50,
+        "score": 1,
+        "label": "Temperature is elevated"
+      }
+    ],
+    "minimum_score": 6
+  },
+  {
+    "name": "Sulfidation",
+    "description": "High-temperature sulfur-bearing hydrocarbon service can drive sulfidation, especially in carbon steel and lower chromium alloys.",
+    "required_fields": ["sulfur_present", "temperature_c", "material"],
+    "conditions": [
+      {
+        "field": "sulfur_present",
+        "operator": "equals",
+        "value": true,
+        "score": 4,
+        "label": "Sulfur species are present",
+        "gate": true
+      },
+      {
+        "field": "temperature_c",
+        "operator": "greater_or_equal",
+        "value": 230,
+        "score": 3,
+        "label": "Temperature is in simplified sulfidation range",
+        "gate": true
+      },
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["carbon steel", "cs", "low alloy steel"],
+        "score": 2,
+        "label": "Material is susceptible steel",
+        "gate": true
+      }
+    ],
+    "minimum_score": 6
+  },
+  {
+    "name": "Caustic cracking",
+    "description": "Carbon steel in concentrated caustic environments can be prone to cracking, particularly where residual or operating stresses exist.",
+    "required_fields": ["caustic_present", "material"],
+    "conditions": [
+      {
+        "field": "caustic_present",
+        "operator": "equals",
+        "value": true,
+        "score": 4,
+        "label": "Caustic is present",
+        "gate": true
+      },
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["carbon steel", "cs"],
+        "score": 2,
+        "label": "Material is carbon steel",
+        "gate": true
+      },
+      {
+        "field": "cyclic_service",
+        "operator": "equals",
+        "value": true,
+        "score": 1,
+        "label": "Cyclic service may increase stress"
+      },
+      {
+        "field": "pwht_status",
+        "operator": "contains_any",
+        "value": ["no", "none", "unknown"],
+        "score": 1,
+        "label": "PWHT is absent or unknown"
+      }
+    ],
+    "minimum_score": 5
+  },
+  {
+    "name": "Erosion-corrosion",
+    "description": "High-velocity liquid or multiphase service with entrained solids, turbulence, or changes in direction can increase erosion-corrosion likelihood.",
+    "required_fields": ["phase", "component_type"],
+    "conditions": [
+      {
+        "field": "phase",
+        "operator": "contains_any",
+        "value": ["liquid", "multiphase"],
+        "score": 2,
+        "label": "Service includes liquid or multiphase flow",
+        "gate": true
+      },
+      {
+        "field": "component_type",
+        "operator": "contains_any",
+        "value": ["elbow", "reducer", "control valve", "injection point", "pump discharge", "tee"],
+        "score": 3,
+        "label": "Component geometry increases local turbulence"
+      },
+      {
+        "field": "notes",
+        "operator": "contains_any",
+        "value": ["high velocity", "sand", "solids", "turbulence", "flashing"],
+        "score": 3,
+        "label": "Notes indicate erosive or turbulent service"
+      },
+      {
+        "field": "material",
+        "operator": "contains_any",
+        "value": ["carbon steel", "cs", "copper alloy"],
+        "score": 1,
+        "label": "Material is commonly screened for erosion-corrosion"
+      }
+    ],
+    "minimum_score": 5
+  }
+]
