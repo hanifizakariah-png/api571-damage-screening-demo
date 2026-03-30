@@ -1,15 +1,27 @@
 import hashlib
 import json
+import os
 import re
+from functools import lru_cache
 from pathlib import Path
 
 import pandas as pd
+
+os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("MKL_NUM_THREADS", "1")
+
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.linear_model import LogisticRegression
 
 
 HISTORY_PATH = Path(__file__).resolve().parent.parent / "data" / "ml_training_history.jsonl"
 TOKEN_PATTERN = re.compile(r"[a-z0-9]+")
+ENABLE_ML_HISTORY_WRITE = os.environ.get("ENABLE_ML_HISTORY_WRITE", "0").lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 
 def _normalize_text(value):
@@ -88,6 +100,7 @@ def _build_training_entries(df, row_labels):
     return entries
 
 
+@lru_cache(maxsize=1)
 def _load_history():
     if not HISTORY_PATH.exists():
         return []
@@ -100,6 +113,8 @@ def _load_history():
 
 
 def _save_history(entries):
+    if not ENABLE_ML_HISTORY_WRITE:
+        return
     HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
     unique = {}
     for entry in entries:
@@ -148,5 +163,7 @@ def train_self_learning_model(df, row_labels, mechanisms):
                 probability = float(model.predict_proba(x_current[row_index])[0][1])
             scores[source_row][mechanism] = probability
 
-    _save_history(history_entries + current_entries)
+    if ENABLE_ML_HISTORY_WRITE:
+        _save_history(history_entries + current_entries)
+        _load_history.cache_clear()
     return scores

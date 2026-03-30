@@ -1,4 +1,5 @@
 import json
+from functools import lru_cache
 from pathlib import Path
 
 import pandas as pd
@@ -10,6 +11,7 @@ from screening.model_learning import train_self_learning_model
 RULES_PATH = Path(__file__).with_name("rules.json")
 
 
+@lru_cache(maxsize=1)
 def load_rules():
     with open(RULES_PATH, "r", encoding="utf-8") as handle:
         return json.load(handle)

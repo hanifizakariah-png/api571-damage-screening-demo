@@ -1,4 +1,5 @@
 import json
+from functools import lru_cache
 from pathlib import Path
 
 import pandas as pd
@@ -7,6 +8,7 @@ import pandas as pd
 KB_PATH = Path(__file__).with_name("knowledge_base.json")
 
 
+@lru_cache(maxsize=1)
 def load_knowledge_base():
     with open(KB_PATH, "r", encoding="utf-8") as handle:
         entries = json.load(handle)
