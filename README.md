@@ -92,3 +92,5 @@ simplified deterministic engineering rules.
 - The app can generate a sample Excel template with a sample input sheet and a
   data dictionary sheet.
 - Uploaded datasets must be mapped to the expected fields before screening.
+- On shared cloud deployments, local ML history persistence is disabled by default.
+  Set `ENABLE_ML_HISTORY_WRITE=1` only if you intentionally want local history writes.
